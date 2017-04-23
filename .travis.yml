@@ -1,0 +1,13 @@
+language: ruby
+rvm:
+- 2.2.1
+env:
+  matrix:
+  - CACHE=localhost:11211
+  global:
+    secure: ok7ZPuWXBoXaxCph9RlXOjk3HsLgDTtgmKlK+t6G/P4ksRIS4RepxmCSU1BOlrLcQdg2o/fUsr4sTu+7uyQjbXIE7wu40lIe2QSGCiUbUZD7F+doe8rdkbpk/Q9KgStJulshEeE739T7vdXPM4MyqDc77JkHVUGJZrTktxg7GmvGYySay0BXIQCsJnuoGce9lwiXI/owk41MeJ6fy+MyeJwdNTkkwlN1vNjb6hMo4OLIpkOoFog5oGoD4CjHJgPpMASIzDd/hQxwl9geUN/Yk0AkYs7LGRFhEZ8itI/mTbD1VTLviqi6ePczeh+roNkdbGAISJD46ZUpVw0g8Ha6w+SrA9mC9b9ke3A5esYI3ZEHOA8jtZRfyXbUQzTw6e+rLsMysK4keIwg2nPGBf4wgimvCXuGzDPwXL02uPcLw1+uuAN4/FEAuukKh2aRw3ZUX7uHrMoh5Q9R9KAMmpq/MPtWe8MmienGdwdfS+2tHuKcOrJIlckDQqKG1Qth1M2Ea8XcfGvEM9rD90gtCBrTjvR1DTDUXQJFO5lrnuiD56hLHiKIfFHmu4DZ/T1HdN8iErKOjv33Yu+VH1Gjbevu0rU6ZgvdGYaz3enRQOOCt8N6cH+rnikq1bpadIQfTo7tiOS7qVweY2R/QQfwRkxuBS7Ismdoxy7xgC5BLtKQhic=
+services:
+- memcached
+before_script:
+- touch $DB && ruby test/integration/create_database.rb
+script: rspec test/integration/data_access_test.rb
